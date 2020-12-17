@@ -50,9 +50,9 @@ def uniqueUpdate(data1, data2):
                 dupKeys[k] = [v1, v2]
                 # Remove (k, v1) from data1
                 del data1[k]
-            else:
-                # Add (k, v2) to data1
-                data1[k] = v2
+        else:
+            # Add (k, v2) to data1
+            data1[k] = v2
     # After processing all (k, v2) in
     # data2, return the dictionary
     return dupKeys
@@ -90,25 +90,11 @@ data1
 data2 (should remain the same)
 dup (the dictionary returned)
 '''
-
-import sys
-if __name__ == '__main__':
-    data1 = {}
-    n1 = int(input())
-    for _ in range(n1):
-        k, v = map(int, input().split())
-        if k in data1:
-            sys.exit("Illegal: data1")
-        data1[k] = v
-    data2 = []
-    n2 = int(input())
-    for _ in range(n2):
-        k, v = map(int, input().split())
-        for [k2, v2] in data2:
-            if k2 == k:
-                sys.exit("Illegal: data2")
-        data2.append([k, v])
-    dup = uniqueUpdate(data1, data2)
-    print(data1)
-    print(data2)
-    print(dup)
+if k in data1:
+            v1 = data1[k]
+        if v1 != v2:
+            dupKeys[k] = [v1, v2]
+            del data1[k]
+        else:
+            data1[k] = v2
+    return dupKeys
